@@ -52,5 +52,17 @@ router.get('/list', (req, res) =>{
             console.log('Error in retrival: ' + err)
         }
         
-    })
-})
+    });
+});
+
+router.get('/:id', (req, res) => {
+    Student.findById(req.params.id, (err, doc) => {
+        if(!err) {
+            res.render("student/addOrEdit", {
+                viewTitle: "Update Student",
+                student: doc,
+            });
+            console.log(doc);
+        }
+    });
+});
