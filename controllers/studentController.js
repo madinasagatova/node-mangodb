@@ -26,6 +26,8 @@ function insertRecord(req, res){
     student.save((err, doc) => {
         if(!err) {
             res.redirect('student/list');
+        } else{
+            console.log("Error during insert ", + err)
         }
     })
 };
