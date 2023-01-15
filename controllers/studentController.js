@@ -29,8 +29,8 @@ function insertRecord(req, res){
         } else{
             console.log("Error during insert ", + err)
         }
-    })
-};
+    });
+}
 
 function updateRecord(req, res){
     Student.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, (err, doc) =>{
@@ -39,5 +39,18 @@ function updateRecord(req, res){
         } else{
             console.log('Error during update: ' + err)
         }
-    })
+    });
 }
+
+router.get('/list', (req, res) =>{
+    Student.find((err, docs) => {
+        if(!err){
+            res.render('student/list', {
+                list: docs
+            })
+        } else{
+            console.log('Error in retrival: ' + err)
+        }
+        
+    })
+})
