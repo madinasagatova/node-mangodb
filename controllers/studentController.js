@@ -31,3 +31,13 @@ function insertRecord(req, res){
         }
     })
 };
+
+function updateRecord(req, res){
+    Student.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, (err, doc) =>{
+        if(!err){
+            res.redirect('student/list')
+        } else{
+            console.log('Error during update: ' + err)
+        }
+    })
+}
