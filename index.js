@@ -10,6 +10,7 @@ var app =express();
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
+//creating a default page
 app.get('/', (req, res) =>{
     res.send(`
         <h2>Welcome to Student Database!</h2>
@@ -20,7 +21,18 @@ app.get('/', (req, res) =>{
 
 app.set('views', path.join(__dirname, '/views/'))
 
-app.engine
+app.engine(
+    'hbs',
+    exphbs({
+        handlebars: allowInsecurePrototypeAccess(handlebars),
+        extname: "hbs",
+        defaultLayout: "MainLayout",
+        layoutsDir: __dirname + "/views/layouts",
+})
+);
+
+app.set("views engine", "hbs");
+
 app.listen(3000, () =>{
     console.log('Server started at port 3000');
 });
