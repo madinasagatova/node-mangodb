@@ -3,6 +3,8 @@ var router = express.Router();
 const mongoose = require('mongoose');
 const Student = mongoose.model('Student');
 
+mongoose.set('strictQuery', false);
+
 router.get('/', (req, res) =>{
     res.render('student/addOrEdit', {
         viewTitle: 'Insert Student'
@@ -76,3 +78,5 @@ router.get('delete/:id', (req, res) => {
         }
     });
 });
+
+module.exports = router;
